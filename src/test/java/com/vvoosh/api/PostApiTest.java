@@ -16,7 +16,7 @@ public class PostApiTest {
 @Before
 public void beforeTest() {
         String response =given().
-        header("Authorization", "Basic dnZvb3NoOjJuaWNlRFJFU1MyMA==").
+        header("Authorization", "Basic ???").
         and().
         formParam("email", "226-vv@mailinator.com").
         formParam("password", "test1234").
