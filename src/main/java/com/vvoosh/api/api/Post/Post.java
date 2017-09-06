@@ -1,6 +1,6 @@
-package com.vvoosh.api.api;
+package com.vvoosh.api.api.Post;
 
-import com.vvoosh.payloads.request.PostPayload;
+import com.vvoosh.api.Payloads.Request.PostPayload;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 

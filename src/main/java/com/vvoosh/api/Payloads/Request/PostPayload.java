@@ -1,4 +1,4 @@
-package com.vvoosh.payloads.request;
+package com.vvoosh.api.Payloads.Request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
