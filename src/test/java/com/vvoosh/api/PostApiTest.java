@@ -24,20 +24,19 @@ public class PostApiTest {
     @Before
     public void beforeTest() {
         String response =given().
-                header("Authorization", "Basic dnZvb3NoOjJuaWNlRFJFU1MyMA==").
-                and().
-                formParam("email", "226-vv@mailinator.com").
-                formParam("password", "test1234").
-                when().
-                post("https://test-vpc.vvoosh.com/process-login").
-                then().
-                statusCode(302).
-                and().
-                extract().header("Set-Cookie");
-                this.cookieSession=response;
-    }
+        header("Authorization", "Basic dnZvb3NoOjJuaWNlRFJFU1MyMA==").
+        and().
+        formParam("email", "226-vv@mailinator.com").
+        formParam("password", "test1234").
+        when().
+        post("https://test-vpc.vvoosh.com/process-login").
+        then().
+        statusCode(302).
+        and().
+        extract().header("Set-Cookie");
+        this.cookieSession=response;
 
-
+        }
 
 
     @Test
@@ -73,8 +72,8 @@ public class PostApiTest {
                 relaxedHTTPSValidation().
                 and().
                 header("Authorization", "Basic dnZvb3NoOjJuaWNlRFJFU1MyMA==").
+                header("cookie",cookieSession).
                 and().
-                header("cookie", cookieSession).
                 contentType("application/json").
                 and().
                 body(postBody).

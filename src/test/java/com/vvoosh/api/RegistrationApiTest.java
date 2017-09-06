@@ -1,6 +1,7 @@
 package com.vvoosh.api;
 
 import com.vvoosh.api.api.Registration.Registration;
+import org.junit.Before;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
@@ -10,14 +11,30 @@ import static io.restassured.RestAssured.given;
  */
 public class RegistrationApiTest {
     String cookieSession;
+    @Before
+    public void beforeTest() {
+        String response =given().
+                header("Authorization", "Basic dnZvb3NoOjJuaWNlRFJFU1MyMA==").
+                and().
+                formParam("email", "226-vv@mailinator.com").
+                formParam("password", "test1234").
+                when().
+                post("https://test-vpc.vvoosh.com/process-login").
+                then().
+                statusCode(302).
+                and().
+                extract().header("Set-Cookie");
+                this.cookieSession=response;
+
+    }
 
 
     @Test
     public void RegisterUser(){
         Registration newUser = new Registration();
-        newUser.setFirstName("Lewis");
+        newUser.setFirstName("Tony");
         newUser.setMiddleName("A");
-        newUser.setLastName("Pond");
+        newUser.setLastName("Stone");
         newUser.setPassword("test1234");
         newUser.setConfirmPassword("test1234");
         newUser.setInviteCode("code");
@@ -51,7 +68,7 @@ public class RegistrationApiTest {
         newUser.setEmailsFriendRequestAcceptedEnabled(true);
         newUser.setEmailsEventInviteEnabled(true);
         newUser.setEmailsEventEndedEnabled(true);
-        newUser.setEmail("LewisPond@mailinator.com");
+        newUser.setEmail("MarkStonea@mailinator.com");
         given().
                 proxy("localhost", 8888).
                 and().
@@ -66,19 +83,6 @@ public class RegistrationApiTest {
                 post("https://test-vpc.vvoosh.com/data/test/register").
                 then().
                 statusCode(201);
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 }
